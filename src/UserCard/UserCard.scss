@@ -1,0 +1,28 @@
+.userCard {
+    border: 1px solid #f1f1f1;
+    margin-top: 10px ;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @media (min-width: 768px) {
+        height: 300px;
+    }
+}
+.coordinates {
+    width: 60%;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px auto;
+    background-color: rgba(102, 80, 201, 0.5);
+    border-radius: 16px;
+    padding: 8px 5px;
+    color: #FFF;
+    font-size: 25px;
+    font-weight: 300;
+    text-shadow: 2px 1px rgba(50, 50, 70, 0.5);
+    text-align: center;
+    box-shadow: 2px 4px rgba(0, 0, 0, 0.2) ; 
+}
