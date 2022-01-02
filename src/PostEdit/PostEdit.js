@@ -1,29 +1,51 @@
-import React from 'react'
+import React, { useState, useRef } from 'react'
 
 export default function PostEdit({ post, onSavePost }) {
 
+    const [statePost, setStatePost] = useState({ ...post }); // Use destructive to avoid changing the original obj. 
+    const titleRef = useRef(null);
+    const bodyRef = useRef(null);
+
     function onSubmit(e) {
         e.preventDefault();
-        let values = {
-            id: post.id,
-            title: e.target.title.value,
-            body: e.target.body.value
+        onSavePost(statePost)
+    }
+
+    const onCancel = () => {
+        setStatePost({ ...post }) // setState uses shallow comparison, that's way I need the ...
+        console.log(bodyRef.current.value)
+    }
+
+    const onChangeProp = (property) => (e) => {
+        statePost[property] = e.target.value
+        setStatePost({ ...statePost })
+    }
+
+    const onKeyDown = (eize) => (e) => {
+        if (e.key === 'Enter') {
+            if (eize === 'title') {
+                bodyRef.current.focus()
+            }
+            else {
+                titleRef.current.focus()
+            }
         }
-        onSavePost(values)
 
     }
 
     return (
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} className={post ? 'sababa' : 'lo-sababa'}>
             <div>
                 <label htmlFor='title'>Title</label>
-                <input type='text' name='title' defaultValue={post.title} />
+                <input ref={titleRef} type='text' name='title' onKeyDown={onKeyDown('title')} onChange={onChangeProp('title')} value={statePost?.title} />
             </div>
             <div>
                 <label htmlFor='body'>Body</label>
-                <input type='text' name='body' defaultValue={post.body} />
+                <input ref={bodyRef} type='text' name='body' onKeyDown={onKeyDown('body')} onChange={onChangeProp('body')} value={statePost?.body} />
             </div>
             <input type='submit' value='submit' />
+            <button onClick={onCancel} >Cancel </button>
+
         </form >
 
 

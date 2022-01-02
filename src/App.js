@@ -8,7 +8,7 @@ import UserPosts from './UserPosts/UserPosts';
 import Feed from './Feed/Feed';
 import PostEdit from './PostEdit/PostEdit';
 
-function App() { //fixind for the layout they asked
+function App() { //fixing for the layout they asked
   return (
     <div className="App">
 

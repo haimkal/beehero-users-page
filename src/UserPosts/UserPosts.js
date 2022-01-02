@@ -4,39 +4,43 @@ import { PostService } from '../services/post.service';
 import Post from '../Post/Post';
 import PostEdit from '../PostEdit/PostEdit';
 
-export default function CardPage() { //even after I deleted back to feed brings me all
+export default function UserPosts({ userId }) { //even after I deleted back to feed brings me all- use redux?
 
     const [postEditShown, setPostEditShown] = useState(false);
     const [posts, setPosts] = useState([]);
+    const [post, setPost] = useState(null);
     const { id } = useParams();
 
-    const onSavePost = (post) => {
+    const onSavePost = (editedPost) => {
 
-        let oldPost = posts.find(p => post.id === p.id)
+        let post = posts.find(p => editedPost.id === p.id)
+        post.title = editedPost.title
+        post.body = editedPost.body
 
-        oldPost.title = post.title
-        oldPost.body = post.body
-        setPosts(posts)
-
+        setPosts([...posts])
     }
     useEffect(() => {
         async function getPosts() {
-            const posts = await PostService.getPosts(id)
+            const posts = await PostService.getPosts(userId)
             setPosts(posts);
         }
-        getPosts(id);
-    }, [])
+        getPosts().then();
+    }, [userId])
 
-
+    const onPostClick = (post) => () => {
+        setPost(post)
+    }
 
     return (
         <div className='userPosts row'>
             {posts.map((post, index) => {
-                return <Post key={index} post={post} onSavePost={onSavePost} onSavePost />
+                return <Post key={JSON.stringify(post)} post={post} onClick={onPostClick(post)} />
             })}
 
 
-            <Link to={`/`}> back to feed</Link>
+
+            {/* after I handel local state inside postEdit, remove the key */}
+            <PostEdit key={post?.id} post={post} onSavePost={onSavePost} />
         </div>
     )
 }
