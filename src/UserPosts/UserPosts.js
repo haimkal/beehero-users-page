@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getPosts, editPost } from '../redux/AsyncThunk';
+import { editPost } from '../redux/AsyncThunk';
 
 import Post from '../Post/Post';
 import PostEdit from '../PostEdit/PostEdit';
@@ -13,17 +13,12 @@ export default function UserPosts({ user }) {
 
     const onSavePost = (editedPost) => {
         dispatch(editPost(editedPost));
+        setPost(null);
     }
 
     useEffect(() => {
-        async function getCurrentPosts() {
-            dispatch(getPosts(user?.id))
-        }
-        if (!posts.length) {
-            getCurrentPosts();
-        }
         setPost(null);
-    }, [user, posts])
+    }, [user])
 
     const onPostClick = (post) => () => {
         setPost(post)
@@ -33,7 +28,7 @@ export default function UserPosts({ user }) {
         <div>
             <div className='userName'> Posts by {user?.name}: </div>
             <div className='userPosts row'>
-                {posts.map((post, index) => {
+                {posts.filter(post => post.userId === user.id).map((post, index) => {
                     return <Post key={JSON.stringify(post)} post={post} onClick={onPostClick(post)} />
                 })}
                 <div className={`postEdit${post ? ' active' : ''}`}>

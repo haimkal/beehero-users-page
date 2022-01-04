@@ -6,11 +6,16 @@ import UserCard from '../UserCard/UserCard';
 import UserPosts from '../UserPosts/UserPosts';
 import Map from '../Map/Map';
 import './HomePage.scss'
+import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router';
+
 
 export default function HomePage() {
     const dispatch = useDispatch();
     const users = useSelector(({ users }) => users);
     const user = useSelector(({ currentUser }) => currentUser);
+    let { userId } = useParams();
+    const navigate = useNavigate()
 
     const deleteCard = (id) => () => {
         dispatch(deleteUser(id))
@@ -20,8 +25,21 @@ export default function HomePage() {
     }
 
     const onUserClick = (user) => () => {
+        navigate('/' + user.id)
         dispatch(getCurrentUser(user));
     }
+
+    useEffect(() => {
+
+
+        if (userId && !user) {
+            let user = users.find(user => user.id == userId);
+            if (user) {
+                onUserClick(user)()
+            }
+        }
+
+    }, [users])
 
     return (
         <div className='homePage row'>

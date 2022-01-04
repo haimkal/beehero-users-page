@@ -4,10 +4,21 @@ bottom: -200px;
 left: 50%;
 opacity: 0;
 transform: translateX(-50%);
-transition: all 2s ease-out;
+transition: all 1s ease-out;
+width: auto;
 }
 .postEdit.active{
     opacity: 1;
     transform: translate(-50%, -200px)
+}
+.error {
+    outline: 1px solid red;
+}
+.error-txt {
+    color: red;
+    opacity: 0;
+    &.danger {
+        opacity: 1;
+    }
 }
 

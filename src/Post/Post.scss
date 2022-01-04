@@ -15,7 +15,21 @@
     @media (min-width: 768px) {
         height: 300px;
     }
-   
+    .deletePostBtn {
+        margin: 10px 0 0 94%;
+        border: none;
+        background: transparent;
+        transition: all 0.5s;
+        font-size: 28px;
+        font-weight: 700;
+        border-radius: 99px;
+        width: 32px;
+        height: 32px;
+        line-height: 29px;
+        &:hover {
+            background: #66b9db;
+        }
+    }
 }
 .post-box {
     display: flex;

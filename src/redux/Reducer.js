@@ -1,10 +1,10 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { getUsers, getPosts, editPost, deleteUser, getCurrentUser } from "./AsyncThunk";
+import { getUsers, getPosts, editPost, deleteUser, getCurrentUser, deletePost } from "./AsyncThunk";
 
 const defaultState = {
     users: [],
     posts: [],
-    currentUser: {}
+    currentUser: null
 }
 
 export default createReducer(
@@ -30,7 +30,6 @@ export default createReducer(
             state.error = '';
             state.isLoading = false;
             state.users = action.payload;
-            // state.posts = action.payload.posts;
         }).addCase(deleteUser.rejected, (state, action) => {
             state.error = action.payload;
         }).addCase(getCurrentUser.fulfilled, (state, action) => {
@@ -38,6 +37,12 @@ export default createReducer(
             state.isLoading = false;
             state.currentUser = action.payload;
         }).addCase(getCurrentUser.rejected, (state, action) => {
+            state.error = action.payload;
+        }).addCase(deletePost.fulfilled, (state, action) => {
+            state.error = '';
+            state.isLoading = false;
+            state.posts = action.payload;
+        }).addCase(deletePost.rejected, (state, action) => {
             state.error = action.payload;
         })
     }

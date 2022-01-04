@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { ACTION_GET_USERS, ACTION_GET_POSTS, ACTION_EDIT_POST, ACTION_DELETE_USER, ACTION_GET_CURRENT_USER } from "./Actions"
+import { getSpaceUntilMaxLength } from "@testing-library/user-event/dist/utils";
+import { ACTION_GET_USERS, ACTION_GET_POSTS, ACTION_EDIT_POST, ACTION_DELETE_USER, ACTION_GET_CURRENT_USER, ACTION_DELETE_POST } from "./Actions"
 
 const api = {
     base: document.location.protocol + "//jsonplaceholder.typicode.com",
@@ -27,16 +28,14 @@ export const getUsers = createAsyncThunk(
 
 export const getPosts = createAsyncThunk(
     ACTION_GET_POSTS.type,
-    async (userId) => {
-        const url = `${api.base}/posts`
-        let posts = await fetch(url);
-        posts = await posts.json();
-        if (posts) {
-            posts = posts.filter(post => {
-                return post.userId === parseInt(userId);
-            });
+    async (_, { getState }) => {
+        let posts = (({ posts }) => posts)(getState())
+        if (!posts.length) {
+            const url = `${api.base}/posts`
+            posts = await fetch(url);
+            posts = await posts.json();
         }
-        console.log(posts)
+
         return posts;
     }
 )
@@ -47,8 +46,6 @@ export const editPost = createAsyncThunk(
         const posts = [...(({ posts }) => posts)(getState())];
         let index = posts.findIndex(p => editedPost.id === p.id);
         posts[index] = editedPost;
-        // posts.title = editedPost.title;
-        // post.body = editedPost.body;
         return posts;
     }
 )
@@ -62,9 +59,19 @@ export const deleteUser = createAsyncThunk(
     }
 )
 
-// export const deletePost = 
+export const deletePost = createAsyncThunk(
+    ACTION_DELETE_POST.type,
+    async (postToDelete, { getState }) => {
+        const posts = (({ posts }) => posts)(getState());
+        let newPosts = posts.filter((post) => post.id !== postToDelete);
+        return newPosts;
+    }
+)
 
 export const getCurrentUser = createAsyncThunk(
     ACTION_GET_CURRENT_USER.type,
-    async (user) => user
+    async (user, { dispatch }) => {
+        dispatch(getPosts(user.id))
+        return user;
+    }
 )

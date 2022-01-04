@@ -16,8 +16,8 @@ export default function UserCard({ onClick, name, username, email, coordinatesLa
                 </div>
                 <Link to={`/map/user/${id}`} className='linkToMap' >
                     <div className='coordinates'>
-                        <div> lat: {coordinatesLat} </div>
-                        <div> lng: {coordinatesLng}</div>
+                        <div className='lat'> lat: {coordinatesLat} </div>
+                        <div className='lng'> lng: {coordinatesLng}</div>
                     </div>
                 </Link>
                 <div> {company} </div>

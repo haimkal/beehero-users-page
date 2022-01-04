@@ -16,7 +16,8 @@ function App() { //fixing for the layout they asked
 
   useEffect(() => {
     async function getCurrentUsers() {
-      dispatch(getUsers())
+      await dispatch(await getUsers())
+
 
     }
     getCurrentUsers();
@@ -26,6 +27,7 @@ function App() { //fixing for the layout they asked
     <div className="App">
       <Routes>
         <Route path="/map/user/:id" element={<Map />} />
+        <Route path="/:userId" element={<HomePage />} />
         <Route path="/" element={<HomePage />} />
       </Routes>
     </div>
