@@ -4,24 +4,30 @@ import {
   Routes,
   Route
 } from 'react-router-dom';
-import UserPosts from './UserPosts/UserPosts';
-import Feed from './Feed/Feed';
-import PostEdit from './PostEdit/PostEdit';
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { getUsers } from '../src/redux/AsyncThunk';
+import HomePage from './HomePage/HomePage';
+import Map from './Map/Map';
 
 function App() { //fixing for the layout they asked
+  const dispatch = useDispatch();
+  const users = useSelector(({ users }) => users);
+
+  useEffect(() => {
+    async function getCurrentUsers() {
+      dispatch(getUsers())
+
+    }
+    getCurrentUsers();
+  }, [])
+
   return (
     <div className="App">
-
-
       <Routes>
-        <Route path="/user/posts/:id" element={<UserPosts />} />
-        <Route path="/post/:id" element={<PostEdit />} />
-        <Route path="/" element={<Feed />} />
-
-
+        <Route path="/map/user/:id" element={<Map />} />
+        <Route path="/" element={<HomePage />} />
       </Routes>
-
-
     </div>
   );
 }

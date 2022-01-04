@@ -1,28 +1,64 @@
 .userCard {
     border: 1px solid #f1f1f1;
-    margin-top: 10px ;
-    border-radius: 3px;
+    background-color: #fece00;
+    margin: 12px ;
+    border-radius: 10px;
+    font-size: 23px;
+    font-weight: 500;
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    &:hover {
+        transform: scale(1.1);
+        transition: all .2s ease-in;
+    }
     @media (min-width: 768px) {
         height: 300px;
     }
+
+    .nameAndEmail {
+        &:hover{
+            color: white;
+        }
+        cursor: pointer;
+    }
+
+    .linkToMap {
+        cursor: crosshair;
+       }
+    .coordinates {
+        text-decoration: none;
+        width: 60%;
+        height: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 10px auto;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 16px;
+        padding: 8px 5px;
+        color: #FFF;
+        font-size: 25px;
+        font-weight: 300;
+        text-shadow: 2px 1px rgba(50, 50, 70, 0.5);
+        text-align: center;
+        box-shadow: 2px 4px rgba(0, 0, 0, 0.2) ; 
+    }
+
+    .deleteUserBtn {
+        width: 50px;
+        display: none;
+        border-radius: 10px;
+        background-color: #fece00;
+        color:rgba(0, 0, 0, 0.5)
+    }
+
+    
 }
-.coordinates {
-    width: 60%;
-    height: 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 10px auto;
-    background-color: rgba(102, 80, 201, 0.5);
-    border-radius: 16px;
-    padding: 8px 5px;
-    color: #FFF;
-    font-size: 25px;
-    font-weight: 300;
-    text-shadow: 2px 1px rgba(50, 50, 70, 0.5);
-    text-align: center;
-    box-shadow: 2px 4px rgba(0, 0, 0, 0.2) ; 
+
+.userCard:hover {
+    .deleteUserBtn {
+        display: block;
+    }
 }

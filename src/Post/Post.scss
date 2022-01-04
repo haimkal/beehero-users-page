@@ -1,6 +1,38 @@
 .post {
-    
+    background-color: #fece00;
     border: 1px solid #f1f1f1;
-    margin: 15px 0;
-    border-radius: 3px;
+    margin: 12px 0;
+    border-radius: 10px;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    &:hover {
+        cursor: pointer;
+    }
+    @media (min-width: 768px) {
+        height: 300px;
+    }
+   
+}
+.post-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px auto;
+    border-radius: 16px;
+    padding: 8px 5px;
+    color: #FFF;
+    font-size: 25px;
+    font-weight: 300;
+    text-shadow: 2px 1px rgba(50, 50, 70, 0.5);
+    text-align: center;
+    box-shadow: 2px 4px rgba(0, 0, 0, 0.2) ; 
+    background-color: rgba(0, 0, 0, 0.4);
+    @media (min-width: 768px) {
+        width: 100%;
+        height: 80%;
+    }
 }

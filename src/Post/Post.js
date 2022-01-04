@@ -7,14 +7,13 @@ export default function Post({ post, onClick }) { //transferring onSavePost to g
     //from bottom
 
 
-
-
     return (
-        <div className='col-12 col-md-4 post'>
-            <div onClick={onClick}>
+        <div className='post col-12 col-lg-4'>
+            <div className='post-box' onClick={onClick}>
                 <h3>{post.title}</h3>
+                <div>{post.body}</div>
+                {/* <button className='deletePostBtn' onClick={ }>X</button> */}
             </div>
-            <div>{post.body}</div>
         </div>
     )
 }
