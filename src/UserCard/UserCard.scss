@@ -3,16 +3,19 @@
     background-color: #fece00;
     margin-top: 10px ;
     border-radius: 10px;
-    font-size: 23px;
+    font-size: 20px;
     font-weight: 500;
     max-width: 90%;
     @media (min-width: 768px) {
-        height: 300px;
         margin: 12px;
         &:hover {
             transform: scale(1.1);
             transition: all .2s ease-in;
         }
+    }
+    @media (min-width: 1510px) {
+        font-size: 25px;
+        height: 300px;
     }
     
     .userDetails {
@@ -31,8 +34,7 @@
        }
     .coordinates {
         text-decoration: none;
-        width: 60%;
-        height: 100px;
+        width: 80%;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -41,11 +43,16 @@
         border-radius: 16px;
         padding: 8px 5px;
         color: #FFF;
-        font-size: 25px;
+        font-size: 20px;
         font-weight: 300;
         text-shadow: 2px 1px rgba(50, 50, 70, 0.5);
         text-align: center;
         box-shadow: 2px 4px rgba(0, 0, 0, 0.2) ; 
+        @media (min-width: 1500px) {
+            font-size: 25px;
+            padding: 15px 0;
+            width: 80%;
+        }
     }
 
     .deleteUserBtn {

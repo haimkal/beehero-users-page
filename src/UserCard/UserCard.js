@@ -8,7 +8,7 @@ export default function UserCard({ onClick, name, username, email, coordinatesLa
         onClick();
     }
     return (
-        <div className="userCard col-12 col-lg-2 ">
+        <div className="userCard col-12 col-md-4 col-lg-3 col-xl-2 ">
             {children}
             <div className='userDetails'>
                 <div className='nameAndEmail' onClick={handleClick}>
