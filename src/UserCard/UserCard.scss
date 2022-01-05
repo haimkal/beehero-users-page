@@ -1,22 +1,23 @@
 .userCard {
     border: 1px solid #f1f1f1;
     background-color: #fece00;
-    margin: 12px ;
+    margin-top: 10px ;
     border-radius: 10px;
     font-size: 23px;
     font-weight: 500;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    &:hover {
-        transform: scale(1.1);
-        transition: all .2s ease-in;
-    }
+    max-width: 90%;
     @media (min-width: 768px) {
         height: 300px;
+        margin: 12px;
+        &:hover {
+            transform: scale(1.1);
+            transition: all .2s ease-in;
+        }
     }
-
+    
+    .userDetails {
+        margin-top: 15px;
+    }
     .nameAndEmail {
         &:hover{
             color: white;
@@ -36,7 +37,7 @@
         flex-direction: column;
         justify-content: center;
         margin: 10px auto;
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: rgb(0, 0, 0);
         border-radius: 16px;
         padding: 8px 5px;
         color: #FFF;
@@ -48,11 +49,25 @@
     }
 
     .deleteUserBtn {
-        width: 50px;
-        display: none;
-        border-radius: 10px;
-        background-color: #fece00;
-        color:rgba(0, 0, 0, 0.5)
+        float: right;
+        border: none;
+        background: transparent;
+        transition: all 0.5s;
+        font-size: 28px;
+        font-weight: 700;
+        border-radius: 99px;
+        width: 32px;
+        height: 32px;
+        line-height: 29px;
+        &:hover {
+            background: #fffffe;
+        }
+        // width: 50px;
+        // display: none;
+        // border-radius: 10px;
+        // background-color: #fece00;
+        // color:rgba(0, 0, 0, 0.5)
+        
     }
 
     

@@ -13,7 +13,7 @@ export default function Post({ post, onClick }) {
     }
 
     return (
-        <div className='post col-12 col-lg-4'>
+        <div className='post col-12 col-lg-3'>
             <button className='deletePostBtn' onClick={deleteCurrentPost(post.id)}>X</button>
             <div className='post-box' onClick={onClick}>
                 <h3>{post.title}</h3>

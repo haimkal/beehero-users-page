@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useParams } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import { getPosts, getUsers } from '../redux/AsyncThunk';
 import { useDispatch, useSelector } from 'react-redux';
@@ -55,11 +55,19 @@ function Map({ lat, lng }) {
                 onLoad={onLoad}
                 onUnmount={onUnmount}
             >
-                { /* Child components, such as markers, info windows, etc. */}
                 <Marker position={{ lat: parseFloat(user.coordinates.lat), lng: parseFloat(user.coordinates.lng) }}
                     icon={'https://i.ibb.co/Bs2xB7S/beehero-icon.png'} />
             </GoogleMap >
-            <div className="north-east">lat: {user.coordinates.lat}, lng: {user.coordinates.lng}</div>
+            <div className="userDetailsMap">
+                <div>{user.name}</div>
+                <div>
+                    lat: {user.coordinates.lat},
+                    lng: {user.coordinates.lng}
+                </div>
+            </div>
+            <Link to={`/`} className='linkToHomePage' >
+                Back to Homepage
+            </Link>
         </div >
     ) : <></>
 }

@@ -20,7 +20,6 @@ export default function PostEdit({ post, onSavePost }) {
     }
 
     const onChangeProp = (property) => (e) => {
-
         setStatePost({ ...statePost, [property]: e.target.value })
 
         if (!e.target.value.trim()) {
@@ -44,7 +43,7 @@ export default function PostEdit({ post, onSavePost }) {
     }
 
     return (
-        <div style={{ background: '#FFF', width: '400px' }}>
+        <div>
             <form onSubmit={onSubmit} >
                 <div>
                     <label htmlFor='title'>Title</label>
@@ -63,8 +62,10 @@ export default function PostEdit({ post, onSavePost }) {
                         ref={bodyRef} type='text' name='body' onKeyDown={onKeyDown('body')} onChange={onChangeProp('body')} value={statePost?.body} />
                     <div className={`error-txt ${error['body'] ? 'danger' : ''}`}>Body cannot be empty</div>
                 </div>
-                <input type='submit' value='submit' disabled={error['title'] || error['body']} />
-                <button onClick={onCancel} >Cancel </button>
+                <div className='buttons'>
+                    <input className='submit' type='submit' value='submit' disabled={error['title'] || error['body']} />
+                    <button className='cancel' onClick={onCancel} >cancel </button>
+                </div>
             </form >
         </div>
 

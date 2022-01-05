@@ -9,6 +9,7 @@ export default function UserCard({ onClick, name, username, email, coordinatesLa
     }
     return (
         <div className="userCard col-12 col-lg-2 ">
+            {children}
             <div className='userDetails'>
                 <div className='nameAndEmail' onClick={handleClick}>
                     {name} <span>{`(${username})`}</span>
@@ -22,7 +23,7 @@ export default function UserCard({ onClick, name, username, email, coordinatesLa
                 </Link>
                 <div> {company} </div>
             </div>
-            {children}
+
         </div >
     )
 }
