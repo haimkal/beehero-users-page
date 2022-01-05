@@ -1,12 +1,13 @@
-import React from 'react'
+import React from 'react';
 import { Link } from 'react-router-dom';
-import './UserCard.scss'
+import './UserCard.scss';
 
 export default function UserCard({ onClick, name, username, email, coordinatesLat, coordinatesLng, company, id, children }) {
 
     function handleClick() {
         onClick();
     }
+
     return (
         <div className="userCard col-12 col-md-4 col-lg-3 col-xl-2 ">
             {children}
@@ -23,7 +24,6 @@ export default function UserCard({ onClick, name, username, email, coordinatesLa
                 </Link>
                 <div> {company} </div>
             </div>
-
         </div >
     )
 }

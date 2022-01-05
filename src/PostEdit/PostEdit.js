@@ -1,45 +1,42 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useRef } from 'react';
 import './PostEdit.scss';
 
 export default function PostEdit({ post, onSavePost }) {
 
-    const [statePost, setStatePost] = useState({ ...post }); // Use destructive to avoid changing the original obj. 
-    const [error, setTitleError] = useState({});
-    const [bodyError, setBodyError] = useState('');
+    const [statePost, setStatePost] = useState({ ...post });
+    const [error, setError] = useState({});
     const titleRef = useRef(null);
     const bodyRef = useRef(null);
 
     function onSubmit(e) {
         e.preventDefault();
-        onSavePost(statePost)
+        onSavePost(statePost);
     }
 
     const onCancel = () => {
-        setStatePost({ ...post }) // setState uses shallow comparison, that's way I need the ...
-        console.log(bodyRef.current.value)
+        setStatePost({ ...post });
     }
 
     const onChangeProp = (property) => (e) => {
-        setStatePost({ ...statePost, [property]: e.target.value })
+        setStatePost({ ...statePost, [property]: e.target.value });
 
         if (!e.target.value.trim()) {
-            setTitleError({ ...error, [property]: true });
+            setError({ ...error, [property]: true });
         }
         else {
-            setTitleError({ ...error, [property]: false });
+            setError({ ...error, [property]: false });
         }
     }
 
-    const onKeyDown = (eize) => (e) => {
+    const onKeyDown = (property) => (e) => {
         if (e.key === 'Enter') {
-            if (eize === 'title') {
-                bodyRef.current.focus()
+            if (property === 'title') {
+                bodyRef.current.focus();
             }
             else {
-                titleRef.current.focus()
+                titleRef.current.focus();
             }
         }
-
     }
 
     return (
@@ -50,7 +47,8 @@ export default function PostEdit({ post, onSavePost }) {
                     <input
                         className={error['title'] ? 'error' : ''}
                         ref={titleRef}
-                        type='text' name='title'
+                        type='text'
+                        name='title'
                         onKeyDown={onKeyDown('title')}
                         onChange={onChangeProp('title')}
                         value={statePost?.title} />
@@ -58,8 +56,13 @@ export default function PostEdit({ post, onSavePost }) {
                 </div>
                 <div>
                     <label htmlFor='body'>Body</label>
-                    <input className={error['body'] ? 'error' : ''}
-                        ref={bodyRef} type='text' name='body' onKeyDown={onKeyDown('body')} onChange={onChangeProp('body')} value={statePost?.body} />
+                    <input 
+                        className={error['body'] ? 'error' : ''}
+                        ref={bodyRef} 
+                        type='text' name='body' 
+                        onKeyDown={onKeyDown('body')} 
+                        onChange={onChangeProp('body')} 
+                        value={statePost?.body} />
                     <div className={`error-txt ${error['body'] ? 'danger' : ''}`}>Body cannot be empty</div>
                 </div>
                 <div className='buttons'>

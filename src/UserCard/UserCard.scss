@@ -21,17 +21,19 @@
     .userDetails {
         margin-top: 15px;
     }
+
     .nameAndEmail {
+        cursor: pointer;
         &:hover{
             color: white;
         }
-        cursor: pointer;
     }
 
     .linkToMap {
         text-decoration: none;
         cursor: crosshair;
-       }
+    }
+
     .coordinates {
         text-decoration: none;
         width: 80%;
@@ -69,19 +71,5 @@
         &:hover {
             background: #fffffe;
         }
-        // width: 50px;
-        // display: none;
-        // border-radius: 10px;
-        // background-color: #fece00;
-        // color:rgba(0, 0, 0, 0.5)
-        
-    }
-
-    
-}
-
-.userCard:hover {
-    .deleteUserBtn {
-        display: block;
     }
 }

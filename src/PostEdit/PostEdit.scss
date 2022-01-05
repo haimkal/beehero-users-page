@@ -1,19 +1,22 @@
 .postEdit {
-border: 2px solid #000;
-border-radius: 16px;
-padding: 10px;
-background-color: rgb(255, 255, 255);
-position: fixed;
-bottom: -200px;
-left: 50%;
-opacity: 0;
-transform: translateX(-50%);
-transition: all 1s ease-out;
-width: auto;
+    border: 2px solid #000;
+    border-radius: 16px;
+    padding: 10px;
+    background-color: rgb(255, 255, 255);
+    position: fixed;
+    bottom: -200px;
+    left: 50%;
+    opacity: 0;
+    transform: translateX(-50%);
+    transition: all 1s ease-out;
+    width: auto;
 }
 .postEdit.active{
     opacity: 1;
-    transform: translate(-50%, -200px)
+    transform: translate(-50%, -300px);
+    @media (min-width: 768px) {
+        transform: translate(-50%, -200px)
+    }
 }
 
 .buttons {
@@ -32,27 +35,25 @@ input, .submit, .cancel {
     font-size: 1.5rem;
     @media (min-width: 768px) {
         width: 100%;
-        
     }
 }
 
 .submit, .cancel {
     background-color: #fadc57;
-
     &:hover{
         background-color: #ffcc2e;
     }
 }
+
 label {
     font-size: 1.5rem;
     font-weight: 500;
 }
 
-
-
 .error {
     outline: 1px solid red;
 }
+
 .error-txt {
     color: red;
     opacity: 0;

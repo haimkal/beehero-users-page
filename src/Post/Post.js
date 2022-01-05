@@ -1,9 +1,7 @@
-import React from 'react'
-import PostEdit from '../PostEdit/PostEdit';
-import { Link } from 'react-router-dom';
-import './Post.scss'
+import React from 'react';
 import { deletePost } from '../redux/AsyncThunk';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import './Post.scss';
 
 export default function Post({ post, onClick }) {
     const dispatch = useDispatch();

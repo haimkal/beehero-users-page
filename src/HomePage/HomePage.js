@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react'
-// import { UserService } from '../services/user.service';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteUser, getCurrentUser, getPosts, getUsers } from '../redux/AsyncThunk';
+import { deleteUser, setCurrentUser} from '../redux/AsyncThunk';
 import UserCard from '../UserCard/UserCard';
 import UserPosts from '../UserPosts/UserPosts';
-import Map from '../Map/Map';
-import './HomePage.scss'
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router';
+import './HomePage.scss';
 
 
 export default function HomePage() {
@@ -20,25 +18,22 @@ export default function HomePage() {
     const deleteCard = (id) => () => {
         dispatch(deleteUser(id))
         if (user.id === id) {
-            dispatch(getCurrentUser(null));
+            dispatch(setCurrentUser(null));
         }
     }
 
     const onUserClick = (user) => () => {
         navigate('/' + user.id)
-        dispatch(getCurrentUser(user));
+        dispatch(setCurrentUser(user));
     }
 
     useEffect(() => {
-
-
         if (userId && !user) {
             let user = users.find(user => user.id == userId);
             if (user) {
                 onUserClick(user)()
             }
         }
-
     }, [users])
 
     return (

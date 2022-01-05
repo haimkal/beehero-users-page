@@ -1,5 +1,4 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getSpaceUntilMaxLength } from "@testing-library/user-event/dist/utils";
 import { ACTION_GET_USERS, ACTION_GET_POSTS, ACTION_EDIT_POST, ACTION_DELETE_USER, ACTION_GET_CURRENT_USER, ACTION_DELETE_POST } from "./Actions"
 
 const api = {
@@ -68,7 +67,7 @@ export const deletePost = createAsyncThunk(
     }
 )
 
-export const getCurrentUser = createAsyncThunk(
+export const setCurrentUser = createAsyncThunk(
     ACTION_GET_CURRENT_USER.type,
     async (user, { dispatch }) => {
         dispatch(getPosts(user.id))

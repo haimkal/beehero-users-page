@@ -1,9 +1,7 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
-import { getPosts, getUsers } from '../redux/AsyncThunk';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import './Map.scss';
 
 
@@ -12,19 +10,15 @@ const containerStyle = {
     height: '100%'
 };
 
-function Map({ lat, lng }) {
-    const dispatch = useDispatch();
+function Map() {
     const users = useSelector(({ users }) => users);
-    const getUser = (userId) => users.find(user => user.id == userId) || null // userId returns from useParams as a string
+    const getUser = (userId) => users.find(user => user.id == userId) || null
     const { id: userId } = useParams()
     const [map, setMap] = useState(null)
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: 'AIzaSyBd7QuKs-U9a_cZVOCzkqfNMLYvSyerKTY'
     })
-
-
-
 
     if (!users.length) return null;
     const user = getUser(userId)
@@ -36,9 +30,7 @@ function Map({ lat, lng }) {
     const onLoad = function (map) {
         const bounds = new window.google.maps.LatLngBounds();
         map.fitBounds(bounds);
-
-        setTimeout(() => map.setCenter(center), 2000) //needs to wait for the setCenter to work
-
+        setTimeout(() => map.setCenter(center), 2000) 
         setMap(map)
     }
 
@@ -65,9 +57,6 @@ function Map({ lat, lng }) {
                     lng: {user.coordinates.lng}
                 </div>
             </div>
-            <Link to={`/`} className='linkToHomePage' >
-                Back to Homepage
-            </Link>
         </div >
     ) : <></>
 }
